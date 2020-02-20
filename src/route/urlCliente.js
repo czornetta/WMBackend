@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const cliente = require('../service/srvCliente');
 
+// Autenticación
+
+
+// CRUD
 router.get('/',(req,res) => {
     const result = cliente.get(req);
     res.json({"Resultado":result}); 
