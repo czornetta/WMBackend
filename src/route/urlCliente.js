@@ -9,18 +9,24 @@ router.get('/',(req,res) => {
 
 router.post('/',(req,res) => {
     const result = cliente.add(req);
-    res.json({"Requerimiento":result,
-                "Resultado":"OK"}); 
+    res.json(result); 
 }); 
 
-router.put('/',(req,res) => {
+router.put('/:id',(req,res) => {
+    
     const result = cliente.upd(req);
-    res.json({"Resultado":result}); 
+
+    if (!result.estadoError){
+        res.json(result);
+        
+    } else { 
+        res.status(result.estadoError).json({error : result.error});    
+    }
 }); 
 
-router.delete('/',(req,res) => {
+router.delete('/:id',(req,res) => {
     const result = cliente.del(req);
-    res.json({"Resultado":result}); 
+    res.json(result); 
 }); 
 
 module.exports = router;

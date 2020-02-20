@@ -6,15 +6,42 @@ function get(req){
 }
 
 function add(req){
-    return req.body;
+    const requerimiento = {...req.body, registro:"insertado"};
+    
+    return requerimiento;
 }
 
 function upd(req){
-    return 'upd cliente';
+    const {requerimiento} = req.body;
+    const {id} = req.params;
+    let resultado = {};
+
+    if (requerimiento){
+        resultado = {
+            id : id,
+            requerimiento : requerimiento,
+            registro : "Actualizado"
+        };
+    } else {
+        resultado = {
+            estadoError : 500,
+            error : 'No se encontró Requerimiento'
+        }; 
+    }
+    
+    return resultado;
 }
 
 function del(req){
-    return 'del cliente';
+    const {requerimiento} = req.body;
+    const {id} = req.params;
+
+    const resultado = {
+        id : id,
+        requerimiento : requerimiento,
+        registro : "Borrado"
+    };
+    return resultado;
 }
 
 cliente.get = get;
