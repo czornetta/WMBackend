@@ -1,15 +1,15 @@
 const express = require('express');
 const app = express();
-
 const morgan = require('morgan');
+const autorizacion = require('../service/srvAutorizacion');
 
 const servidorWeb = {};
 
 function iniciarServidor(){
 
-    // configuración
+    // configuración 
     require('dotenv').config();
-    app.set('port',process.env.PORT || 3000);
+    app.set('port',process.env.WEB_PORT);
 
     // middleware
     app.use(express.json());
@@ -17,6 +17,9 @@ function iniciarServidor(){
     app.use(morgan('dev'));
 
     // route
+    // autorizacion
+    app.use('/api/cliente',autorizacion);
+    
     // Cliente
     app.use('/api/cliente',require('../route/urlCliente'));
 
