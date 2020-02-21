@@ -2,9 +2,6 @@ const express = require('express');
 const router = express.Router();
 const cliente = require('../service/srvCliente');
 
-// Autenticación
-
-
 // CRUD
 router.get('/',(req,res) => {
     const result = cliente.get(req);
@@ -17,7 +14,6 @@ router.post('/',(req,res) => {
 }); 
 
 router.put('/:id',(req,res) => {
-    
     const result = cliente.upd(req);
 
     if (!result.estadoError){
@@ -33,4 +29,5 @@ router.delete('/:id',(req,res) => {
     res.json(result); 
 }); 
 
+// exports
 module.exports = router;

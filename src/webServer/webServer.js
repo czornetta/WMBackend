@@ -8,10 +8,12 @@ const servidorWeb = {};
 function iniciarServidor(){
 
     // configuración
+    require('dotenv').config();
     app.set('port',process.env.PORT || 3000);
 
     // middleware
     app.use(express.json());
+    app.use(express.urlencoded({extended:false}));
     app.use(morgan('dev'));
 
     // route
