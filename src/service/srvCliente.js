@@ -1,7 +1,20 @@
 
+const conexionBD = require('../dbServer/conexionBD');
 const cliente={};
 
 function get(req){
+
+    conexionBD.authenticate()
+                .then(() => {
+                    console.log('Conexion OK.');
+                    conexionBD.close().then(()=>{
+                                console.log('Conexion Cerrada');
+                    })
+                })
+                .catch(err => {
+                    console.error('Error al intentar conectar a BD:', err);
+                });
+
     return 'get cliente';
 }
 
