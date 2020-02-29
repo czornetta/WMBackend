@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const autorizacion = require('../service/srvAutorizacion');
+//const autorizacion = require('../service/srvAutorizacion');
 
 const servidorWeb = {};
 
@@ -17,8 +17,9 @@ function iniciarServidor(){
     app.use(morgan('dev'));
 
     // route
+    
     // autorizacion
-    app.use('/api/cliente',autorizacion);
+    //app.use('/api/cliente',autorizacion);
     
     // Cliente
     app.use('/api/cliente',require('../route/urlCliente'));
